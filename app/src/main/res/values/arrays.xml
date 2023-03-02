@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="mySpinnerItems">
+        <item>Pilih Canang</item>
+        <item>Canang Sari</item>
+        <item>Canang Ceper</item>
+        <item>Canang Sari Gede</item>
+    </array>
+</resources>

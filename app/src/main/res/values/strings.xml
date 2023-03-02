@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">o-comerse</string>
+    <string name="selamat_datang">silahkan login untuk melanjutkan</string>
+    <string name="daftar_account">Daftar Account!</string>
+    <string name="daftar">daftarkan akun anda untuk melanjutkan</string>
+    <string name="lupa_password">Lupa Password?</string>
+    <string name="ada_akun">sudah punya akun?</string>
+    <string name="visi">kami menyediakan berbagai sarana upakara, banten dan perlengkapan untuk persembahyangan. mudah, cepat dan hemat waktu bisa pesan antar,saat dipesan langsung dibuatkan. ayo berbelanja di toko kami</string>
+    <string name="text_awal">Lengkapi Sarana Upakara Anda Dengan Berbelanja Di Aplikasi Kami</string>
+    <string name="profile">profile</string>
+    <string name="logout">logout</string>
+    <string name="notification">Notification</string>
+    <string name="keranjang">keranjang</string>
+    <string name="dalam_perjalanan">pesanan dalam perjalanan</string>
+    <string name="sampai">produk diperkirakan akan tiba pada</string>
+    <string name="bayar">, silahkan lakukan pembayaran saat menerima produk anda</string>
+    <string name="alamat_text">alamat pengiriman</string>
+    <string name="price_text">%s</string>
+    <string name="isi_data">ISI DATA BERIKUT JIKA INGIN MEMESAN BARANG</string>
+    <string name="total_text">Total: %s</string>
+
+</resources>
