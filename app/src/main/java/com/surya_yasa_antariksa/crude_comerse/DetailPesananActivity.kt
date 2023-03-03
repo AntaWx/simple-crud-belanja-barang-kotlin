@@ -1,6 +1,7 @@
 package com.surya_yasa_antariksa.crude_comerse
 
 import android.app.AlertDialog
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -13,8 +14,9 @@ import java.util.*
 class DetailPesananActivity : AppCompatActivity() {
 
     private lateinit var delete: Button
-    private lateinit var save : Button
     private lateinit var database: UserDatabase
+    var selectedPrice = 0
+    var jumlah = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,7 +25,6 @@ class DetailPesananActivity : AppCompatActivity() {
         database = UserDatabase.getInstance(applicationContext)
 
         delete = findViewById(R.id.delete_button)
-        save = findViewById((R.id.save_button))
 
         val namaPembeli = intent.getStringExtra("nama_pembeli")
         val namaBarang = intent.getStringExtra("nama_barang")
@@ -65,8 +66,10 @@ class DetailPesananActivity : AppCompatActivity() {
 
     }
 
-    private fun formatHarga(harga: String): String {
-        val formattedHarga = NumberFormat.getNumberInstance(Locale.getDefault()).parse(harga)?.toInt() ?: 0
-        return "Rp$formattedHarga"
-    }
+}
+
+
+fun formatHarga(harga: String): String {
+    val formattedHarga = NumberFormat.getNumberInstance(Locale.getDefault()).parse(harga)?.toInt() ?: 0
+    return "Rp$formattedHarga"
 }

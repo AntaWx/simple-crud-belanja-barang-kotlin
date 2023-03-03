@@ -145,14 +145,4 @@
         android:fontFamily="@font/poppinssemibold"
         android:text="Delete"/>
 
-    <Button
-        android:id="@+id/save_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/edit_update"
-        android:layout_toStartOf="@id/delete_button"
-        android:layout_marginVertical="30dp"
-        android:layout_marginEnd="20dp"
-        android:text="save"/>
-
 </RelativeLayout>

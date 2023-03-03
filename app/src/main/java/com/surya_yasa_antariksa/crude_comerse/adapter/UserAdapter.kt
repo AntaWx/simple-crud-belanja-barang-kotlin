@@ -24,6 +24,7 @@ class UserAdapter(var list: List<UserEntity>, val listener: OnItemClickListener)
         var tanggalDibuat : TextView
         var tanggalDiperbarui : TextView
         var gambarProduk : ImageView
+        var buttonView : ImageButton
 
         init {
             namaPembeli = view.findViewById(R.id.nama_pembeli)
@@ -34,15 +35,21 @@ class UserAdapter(var list: List<UserEntity>, val listener: OnItemClickListener)
             tanggalDibuat = view.findViewById(R.id.tanggal_dibuat)
             tanggalDiperbarui = view.findViewById(R.id.tanggal_diperbarui)
             gambarProduk = view.findViewById(R.id.gambar_produk)
+            buttonView = view.findViewById(R.id.view_button)
 
             buttonUpdate.setOnClickListener {
                 listener.onUpdateClick(adapterPosition)
+            }
+
+            buttonView.setOnClickListener {
+                listener.onViewClick(adapterPosition)
             }
         }
     }
 
     interface OnItemClickListener {
         fun onUpdateClick(position: Int)
+        fun onViewClick(position: Int)
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.row_user_layout, parent, false)

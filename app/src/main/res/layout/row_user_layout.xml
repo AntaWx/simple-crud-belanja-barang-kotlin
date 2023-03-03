@@ -139,6 +139,14 @@
             android:layout_alignParentBottom="true"
             android:background="@drawable/edit_note_icon" />
 
+        <ImageButton
+            android:id="@+id/view_button"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_above="@id/button_update"
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/page_view_icon" />
+
     </RelativeLayout>
 
 

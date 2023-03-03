@@ -22,7 +22,6 @@ class RiwayatPesananActivity : AppCompatActivity(), UserAdapter.OnItemClickListe
     private var list = mutableListOf<UserEntity>()
     private lateinit var adapter: UserAdapter
     private lateinit var database: UserDatabase
-    private val dateFormat = SimpleDateFormat("HH:mm, dd MMMM yyyy", Locale.getDefault())
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,7 +53,7 @@ class RiwayatPesananActivity : AppCompatActivity(), UserAdapter.OnItemClickListe
         adapter.notifyDataSetChanged()
     }
 
-    override fun onUpdateClick(position: Int) {
+    override fun onViewClick(position: Int) {
         val user = list[position]
         val intent = Intent(this, DetailPesananActivity::class.java)
         intent.putExtra("userUid", user.uid.toString())
@@ -67,5 +66,17 @@ class RiwayatPesananActivity : AppCompatActivity(), UserAdapter.OnItemClickListe
         startActivity(intent)
     }
 
+    override fun onUpdateClick(position: Int) {
+        val user = list[position]
+        val intent = Intent(this, EditPesananActivity::class.java)
+        intent.putExtra("userUid", user.uid.toString())
+        intent.putExtra("nama_pembeli", user.namaPembeli)
+        intent.putExtra("nama_barang", user.namaPesanan)
+        intent.putExtra("jumlah_barang", user.jumlahPesanan.toString())
+        intent.putExtra("harga_barang", user.hargaBarang.toString())
+        intent.putExtra("tanggal_dipesan", user.tanggalDibuat)
+        intent.putExtra("tanggal_update", user.tanggalUpdate)
+        startActivity(intent)
+    }
 
 }
