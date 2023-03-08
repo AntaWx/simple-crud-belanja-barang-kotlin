@@ -9,6 +9,7 @@ import android.widget.TextView
 import android.widget.Toast
 import com.surya_yasa_antariksa.crude_comerse.database.UserDatabase
 import java.text.NumberFormat
+import java.text.SimpleDateFormat
 import java.util.*
 
 class DetailPesananActivity : AppCompatActivity() {
@@ -17,6 +18,7 @@ class DetailPesananActivity : AppCompatActivity() {
     private lateinit var database: UserDatabase
     var selectedPrice = 0
     var jumlah = 0
+    val dateCompleks =  SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy", Locale.getDefault())
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

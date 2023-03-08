@@ -149,8 +149,6 @@
         android:id="@+id/parent_image"
         android:layout_width="290dp"
         android:layout_height="250dp"
-        android:background="@drawable/textview_shape"
-        android:backgroundTint="#e7e9e9"
         android:paddingLeft="40dp"
         android:paddingRight="40dp"
         android:layout_marginTop="20dp"

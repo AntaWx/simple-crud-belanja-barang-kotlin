@@ -4,6 +4,8 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.inputmethod.InputMethodManager
+import android.widget.EditText
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -22,6 +24,7 @@ class RiwayatPesananActivity : AppCompatActivity(), UserAdapter.OnItemClickListe
     private var list = mutableListOf<UserEntity>()
     private lateinit var adapter: UserAdapter
     private lateinit var database: UserDatabase
+    private lateinit var searchButton: EditText
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,6 +32,7 @@ class RiwayatPesananActivity : AppCompatActivity(), UserAdapter.OnItemClickListe
 
         recyclerView = findViewById(R.id.recycler_view)
         fab = findViewById(R.id.fab)
+        searchButton = findViewById(R.id.cari_data)
         database = UserDatabase.getInstance(applicationContext)
 
         adapter = UserAdapter(list, this)
@@ -38,6 +42,11 @@ class RiwayatPesananActivity : AppCompatActivity(), UserAdapter.OnItemClickListe
 
         fab.setOnClickListener {
             startActivity(Intent(this, MainActivity::class.java))
+        }
+
+        searchButton.setOnClickListener {
+            val search = searchButton.text.toString().trim()
+            searchData(search)
         }
     }
 
@@ -79,4 +88,27 @@ class RiwayatPesananActivity : AppCompatActivity(), UserAdapter.OnItemClickListe
         startActivity(intent)
     }
 
+    @SuppressLint("NotifyDataSetChanged")
+    private fun searchData(data: String){
+        val findCustomer = database.userDao().getAll().filter { it.namaPembeli!!.contains(data, true) }
+        val findBarang = database.userDao().getAll().filter { it.namaPesanan!!.contains(data, true) }
+
+        list.clear()
+        list.addAll(findCustomer)
+        list.addAll(findBarang)
+        if(findCustomer.isEmpty() && findBarang.isEmpty()){
+            Toast.makeText(this, "Data tidak ditemukan", Toast.LENGTH_SHORT).show()
+        }
+        adapter.notifyDataSetChanged()
+
+        val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(searchButton.windowToken, 0)
+        // menghilangkan fokus dari searchEditText
+        searchButton.clearFocus()
+    }
+
+    fun convertDate(date: String){
+        val date = database.userDao().getAll().filter { it.tanggalUpdate!!.contains(date, true) }
+
+    }
 }

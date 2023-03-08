@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     android:background="@drawable/textview_shape"
     android:backgroundTint="@color/white"
-    android:padding="15dp"
+    android:padding="10dp"
     android:elevation="5dp"
     android:orientation="horizontal"
     android:layout_marginTop="20dp"
@@ -103,9 +103,10 @@
 
         <TextView
             android:id="@+id/tanggal_diperbarui"
-            android:layout_width="wrap_content"
+            android:layout_width="60dp"
             android:layout_height="match_parent"
             android:fontFamily="@font/poppinsmedium"
+            android:minLines="2"
             android:text="Untuk tanggal"/>
 
     </LinearLayout>
@@ -135,8 +136,8 @@
             android:id="@+id/button_update"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
             android:background="@drawable/edit_note_icon" />
 
         <ImageButton

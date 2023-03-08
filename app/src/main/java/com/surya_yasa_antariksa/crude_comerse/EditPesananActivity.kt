@@ -29,6 +29,7 @@ class EditPesananActivity : AppCompatActivity() {
     var updateImage = 0
     val currentDate = Date()
     val dateFormat = SimpleDateFormat("HH:hh dd MMM yyyy", Locale.getDefault())
+    val dateCompleks =  SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy", Locale.getDefault())
     val formattedDate = dateFormat.format(currentDate)
     var updateSelectedDate : Date? = null
 
@@ -55,12 +56,9 @@ class EditPesananActivity : AppCompatActivity() {
         val id = intent.getStringExtra("userUid")?.toIntOrNull() ?: -1
         val NamaPembeli = intent.getStringExtra("nama_pembeli").toString()
         val JumlahBarang = intent.getStringExtra("jumlah_barang")
-        val HargaBarang = intent.getStringExtra("harga_barang")?.toIntOrNull() ?: 0
-        val formatedHarga = formatHarga(HargaBarang.toString())
-
-        updateNamaPembeli.setText(NamaPembeli)
-        updateJumlahBarangView.setText(JumlahBarang)
-        updateHargaBarangView.text = formatedHarga
+        val namaBarang = intent.getStringExtra("nama_barang")
+        val indexsOfNamaBarang  = items.indexOf(namaBarang)
+        val tanggalBarangString = intent.getStringExtra("tanggal_update")
 
         updateMySpinner.visibility = View.VISIBLE
 
@@ -97,6 +95,12 @@ class EditPesananActivity : AppCompatActivity() {
 
             override fun onNothingSelected(parent: AdapterView<*>?) {}
         }
+
+        //set text
+        updateNamaPembeli.setText(NamaPembeli)
+        updateJumlahBarangView.setText(JumlahBarang)
+        updateHargaBarangView.text = selectedPrice.toString()
+        updateMySpinner.setSelection(indexsOfNamaBarang)
 
         var selectedDate: Date? = null // variabel untuk menyimpan tanggal yang dipilih
 
