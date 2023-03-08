@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.Toast
@@ -48,6 +49,27 @@ class RiwayatPesananActivity : AppCompatActivity(), UserAdapter.OnItemClickListe
             val search = searchButton.text.toString().trim()
             searchData(search)
         }
+
+        val actionBar = supportActionBar
+
+        when{
+            actionBar!= null ->{
+                actionBar.setDisplayHomeAsUpEnabled(true)
+                actionBar.title = "Riwayat Pemesanan"
+            }
+        }
+
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            android.R.id.home ->{
+                startActivity(Intent(this, MainActivity::class.java))
+                finish()
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     override fun onResume() {

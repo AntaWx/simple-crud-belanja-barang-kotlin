@@ -4,6 +4,7 @@ import android.app.AlertDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
@@ -28,6 +29,7 @@ class DetailPesananActivity : AppCompatActivity() {
 
         delete = findViewById(R.id.delete_button)
 
+        //data from riwayat pesanan
         val namaPembeli = intent.getStringExtra("nama_pembeli")
         val namaBarang = intent.getStringExtra("nama_barang")
         val jumlahBarang = intent.getStringExtra("jumlah_barang")?.toIntOrNull() ?: 0
@@ -45,6 +47,7 @@ class DetailPesananActivity : AppCompatActivity() {
         val detailTanggalUpdate = findViewById<TextView>(R.id.edit_update)
         val uid = database.userDao().getUserById(userUid)
 
+        //data from riwayat pesanan
         detailNama.text = namaPembeli
         detailNamaPesanan.text = namaBarang
         detailBarang.text = jumlahBarang.toString()
@@ -52,10 +55,19 @@ class DetailPesananActivity : AppCompatActivity() {
         detailTanggal.text = tanggalDipesan
         detailTanggalUpdate.text = tanggalUpdate
 
+
+        val actionBar = supportActionBar
+        when{
+            actionBar != null ->{
+                actionBar.setDisplayHomeAsUpEnabled(true)
+                actionBar.title = "Detail Pesanan"
+            }
+        }
+
         delete.setOnClickListener {
             val user = uid
             AlertDialog.Builder(this)
-                .setTitle("Hapus Catatan")
+                .setTitle("Hapus Riwayat")
                 .setMessage("Apakah Anda yakin ingin menghapus riwayat pembelian ini ini?")
                 .setPositiveButton("Ya") { _, _ ->
                     database.userDao().delete(user!!)
@@ -68,6 +80,15 @@ class DetailPesananActivity : AppCompatActivity() {
 
     }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            android.R.id.home ->{
+                finish()
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
 }
 
 

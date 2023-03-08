@@ -4,9 +4,11 @@ import android.app.DatePickerDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
 import android.view.View
 import android.widget.*
 import androidx.core.content.ContextCompat
+import com.surya_yasa_antariksa.crude_comerse.adapter.UserAdapter
 import com.surya_yasa_antariksa.crude_comerse.database.UserDatabase
 import com.surya_yasa_antariksa.crude_comerse.database.entity.UserEntity
 import java.text.DecimalFormat
@@ -18,10 +20,10 @@ class EditPesananActivity : AppCompatActivity() {
     private lateinit var updateNamaPembeli : EditText
     private lateinit var updateMySpinner: Spinner
     private lateinit var updateJumlahBarangView: EditText
+    private var list = mutableListOf<UserEntity>()
     private lateinit var updateHargaBarangView: TextView
     private lateinit var savePesanan: Button
     private lateinit var database: UserDatabase
-    private lateinit var detailButton: Button
     private lateinit var updateProductImage: ImageView
     private lateinit var updateDatePicker: Button
 
@@ -43,7 +45,6 @@ class EditPesananActivity : AppCompatActivity() {
         updateJumlahBarangView = findViewById(R.id.update_jumlah)
         updateHargaBarangView = findViewById(R.id.update_price_view)
         savePesanan = findViewById(R.id.save_pesanan)
-        detailButton = findViewById(R.id.detail_pesanan)
         updateProductImage = findViewById(R.id.update_product_image)
         updateDatePicker = findViewById(R.id.update_date_picker_button)
 
@@ -91,6 +92,14 @@ class EditPesananActivity : AppCompatActivity() {
                 }
 
                 updateProductImage.setImageResource(updateImage)
+
+                val actionBar = supportActionBar
+                when{
+                    actionBar!= null -> {
+                        actionBar.setDisplayHomeAsUpEnabled(true)
+                        actionBar.title = "Update Pesanan"
+                    }
+                }
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {}
@@ -133,12 +142,12 @@ class EditPesananActivity : AppCompatActivity() {
             datePickerDialog.show()
         }
 
-        savePesanan.setOnClickListener {
-            val newNama = updateNamaPembeli.text.toString()
-            val newJumlah = updateJumlahBarangView.text.toString().toIntOrNull() ?: 1
-            val newHarga = selectedPrice * newJumlah
-            val pesanan = updateMySpinner.selectedItem.toString()
+        val newNama = updateNamaPembeli.text.toString()
+        val newJumlah = updateJumlahBarangView.text.toString().toIntOrNull() ?: 1
+        val newHarga = selectedPrice * newJumlah
+        val pesanan = updateMySpinner.selectedItem.toString()
 
+        savePesanan.setOnClickListener {
             val user = UserEntity(
                 id,
                 newNama,
@@ -155,6 +164,15 @@ class EditPesananActivity : AppCompatActivity() {
 
             Toast.makeText(this, "Data berhasil diupdate", Toast.LENGTH_SHORT).show()
         }
+    }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            android.R.id.home ->{
+                finish()
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

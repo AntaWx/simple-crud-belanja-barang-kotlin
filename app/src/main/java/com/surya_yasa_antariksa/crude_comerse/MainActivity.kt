@@ -177,6 +177,18 @@ class MainActivity : AppCompatActivity() {
             )
             startActivity(Intent(this, RiwayatPesananActivity::class.java))
         }
+    }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.action__bar, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            R.id.home -> Toast.makeText(this, "home belum tersedia", Toast.LENGTH_SHORT).show()
+            R.id.setting -> Toast.makeText(this, "setting belum tersedia", Toast.LENGTH_SHORT).show()
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

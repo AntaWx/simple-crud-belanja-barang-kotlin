@@ -68,12 +68,10 @@
 
     <EditText
         android:id="@+id/edit_jumlah"
-        android:layout_width="20dp"
+        android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_below="@id/mySpinner"
-        android:layout_alignParentEnd="true"
         android:layout_marginStart="100dp"
-        android:layout_marginEnd="80dp"
         android:layout_marginTop="33dp"
         android:layout_toEndOf="@+id/text_pembeli"
         android:background="@drawable/persegi_shape"
@@ -81,6 +79,18 @@
         android:elevation="10dp"
         android:inputType="number"
         android:textColor="@color/black" />
+
+    <TextView
+        android:id="@+id/text_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/mySpinner"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="37dp"
+        android:fontFamily="@font/poppinssemibold"
+        android:layout_toEndOf="@+id/edit_jumlah"
+        android:text="Bungkus"/>
 
     <TextView
         android:id="@+id/harga_text"
@@ -95,11 +105,12 @@
         android:id="@+id/price_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/date_picker_button"
         android:layout_below="@id/jumlah"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="80dp"
-        android:layout_marginEnd="120dp"
+        android:layout_marginStart="110dp"
         android:layout_toStartOf="@id/harga_text"
+        android:layout_toEndOf="@+id/harga_text"
         android:fontFamily="@font/poppinsbold"
         android:text="@string/price_text"
         android:textColor="@color/black" />
